@@ -8,13 +8,13 @@ INSERT INTO loan_types (name, min_interest_rate, max_interest_rate, max_tenure_m
 -- Seed Users (password: password123 - BCrypt hash)
 -- Admin
 INSERT INTO users (name, email, password_hash, role, active) VALUES
-('Admin User', 'admin@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'ADMIN', true);
+('Admin User', 'admin@idfc.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'ADMIN', true);
 
 -- Branch Managers
 INSERT INTO users (name, email, password_hash, role, active) VALUES
-('Rajesh Kumar', 'rajesh.manager@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'MANAGER', true),
-('Priya Sharma', 'priya.manager@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'MANAGER', true),
-('Amit Patel', 'amit.manager@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'MANAGER', true);
+('Rajesh Kumar', 'rajesh.manager@idfc.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'MANAGER', true),
+('Priya Sharma', 'priya.manager@idfc.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'MANAGER', true),
+('Amit Patel', 'amit.manager@idfc.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'MANAGER', true);
 
 -- Branches (with manager references)
 INSERT INTO branches (name, code, city, manager_id) VALUES
@@ -29,27 +29,27 @@ UPDATE users SET branch_id = 3 WHERE id = 4;
 
 -- Branch Officers (2 per branch)
 INSERT INTO users (name, email, password_hash, role, branch_id, active) VALUES
-('Sneha Reddy', 'sneha.officer@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'OFFICER', 1, true),
-('Vikram Singh', 'vikram.officer@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'OFFICER', 1, true),
-('Ananya Das', 'ananya.officer@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'OFFICER', 2, true),
-('Karthik Nair', 'karthik.officer@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'OFFICER', 2, true),
-('Meera Joshi', 'meera.officer@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'OFFICER', 3, true),
-('Arjun Menon', 'arjun.officer@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'OFFICER', 3, true);
+('Sneha Reddy', 'sneha.officer@idfc.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'OFFICER', 1, true),
+('Vikram Singh', 'vikram.officer@idfc.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'OFFICER', 1, true),
+('Ananya Das', 'ananya.officer@idfc.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'OFFICER', 2, true),
+('Karthik Nair', 'karthik.officer@idfc.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'OFFICER', 2, true),
+('Meera Joshi', 'meera.officer@idfc.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'OFFICER', 3, true),
+('Arjun Menon', 'arjun.officer@idfc.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'OFFICER', 3, true);
 
 -- Sample Customers
 INSERT INTO users (name, email, password_hash, role, active) VALUES
-('Rahul Gupta', 'rahul@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
-('Deepa Iyer', 'deepa@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
-('Suresh Babu', 'suresh@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
-('Kavitha Rajan', 'kavitha@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
-('Mohan Das', 'mohan@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
-('Lakshmi Venkat', 'lakshmi@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
-('Nitin Agarwal', 'nitin@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
-('Pooja Mehta', 'pooja@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
-('Arun Krishnan', 'arun@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
-('Divya Rao', 'divya@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
-('Sanjay Hegde', 'sanjay@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
-('Rekha Srinivas', 'rekha@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true);
+('Rahul Gupta', 'rahul@gmail.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'CUSTOMER', true),
+('Deepa Iyer', 'deepa@gmail.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'CUSTOMER', true),
+('Suresh Babu', 'suresh@gmail.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'CUSTOMER', true),
+('Kavitha Rajan', 'kavitha@gmail.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'CUSTOMER', true),
+('Mohan Das', 'mohan@gmail.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'CUSTOMER', true),
+('Lakshmi Venkat', 'lakshmi@gmail.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'CUSTOMER', true),
+('Nitin Agarwal', 'nitin@gmail.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'CUSTOMER', true),
+('Pooja Mehta', 'pooja@gmail.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'CUSTOMER', true),
+('Arun Krishnan', 'arun@gmail.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'CUSTOMER', true),
+('Divya Rao', 'divya@gmail.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'CUSTOMER', true),
+('Sanjay Hegde', 'sanjay@gmail.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'CUSTOMER', true),
+('Rekha Srinivas', 'rekha@gmail.com', '$2a$10$slYQmyNdGzin7olVN3p5be4DlH.PKZbv5H8KnzzVgXXbVxzy71l7m', 'CUSTOMER', true);
 
 -- Sample Loan Applications in various states
 -- Draft loans
