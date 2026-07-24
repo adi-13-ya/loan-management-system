@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: loan-mgmt-db
+    environment:
+      POSTGRES_DB: loan_management
+      POSTGRES_USER: ${DB_USER:-loanadmin}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-loanpass123}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U loanadmin -d loan_management"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: loan-mgmt-backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/loan_management
+      SPRING_DATASOURCE_USERNAME: ${DB_USER:-loanadmin}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-loanpass123}
+      JWT_SECRET: ${JWT_SECRET:-mySuperSecretKeyForJWTTokenGeneration2024!@#}
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    container_name: loan-mgmt-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:

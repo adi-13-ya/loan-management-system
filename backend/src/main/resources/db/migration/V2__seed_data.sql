@@ -1,0 +1,129 @@
+-- Seed Loan Types
+INSERT INTO loan_types (name, min_interest_rate, max_interest_rate, max_tenure_months) VALUES
+('Home Loan', 8.50, 9.50, 360),
+('Personal Loan', 11.00, 14.00, 60),
+('Auto Loan', 9.00, 11.00, 84),
+('Education Loan', 9.00, 10.00, 120);
+
+-- Seed Users (password: password123 - BCrypt hash)
+-- Admin
+INSERT INTO users (name, email, password_hash, role, active) VALUES
+('Admin User', 'admin@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'ADMIN', true);
+
+-- Branch Managers
+INSERT INTO users (name, email, password_hash, role, active) VALUES
+('Rajesh Kumar', 'rajesh.manager@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'MANAGER', true),
+('Priya Sharma', 'priya.manager@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'MANAGER', true),
+('Amit Patel', 'amit.manager@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'MANAGER', true);
+
+-- Branches (with manager references)
+INSERT INTO branches (name, code, city, manager_id) VALUES
+('IDFC Koramangala', 'IDFC-KRM', 'Bengaluru', 2),
+('IDFC Whitefield', 'IDFC-WTF', 'Bengaluru', 3),
+('IDFC Indiranagar', 'IDFC-IND', 'Bengaluru', 4);
+
+-- Assign managers to branches
+UPDATE users SET branch_id = 1 WHERE id = 2;
+UPDATE users SET branch_id = 2 WHERE id = 3;
+UPDATE users SET branch_id = 3 WHERE id = 4;
+
+-- Branch Officers (2 per branch)
+INSERT INTO users (name, email, password_hash, role, branch_id, active) VALUES
+('Sneha Reddy', 'sneha.officer@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'OFFICER', 1, true),
+('Vikram Singh', 'vikram.officer@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'OFFICER', 1, true),
+('Ananya Das', 'ananya.officer@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'OFFICER', 2, true),
+('Karthik Nair', 'karthik.officer@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'OFFICER', 2, true),
+('Meera Joshi', 'meera.officer@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'OFFICER', 3, true),
+('Arjun Menon', 'arjun.officer@idfc.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'OFFICER', 3, true);
+
+-- Sample Customers
+INSERT INTO users (name, email, password_hash, role, active) VALUES
+('Rahul Gupta', 'rahul@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
+('Deepa Iyer', 'deepa@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
+('Suresh Babu', 'suresh@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
+('Kavitha Rajan', 'kavitha@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
+('Mohan Das', 'mohan@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
+('Lakshmi Venkat', 'lakshmi@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
+('Nitin Agarwal', 'nitin@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
+('Pooja Mehta', 'pooja@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
+('Arun Krishnan', 'arun@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
+('Divya Rao', 'divya@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
+('Sanjay Hegde', 'sanjay@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true),
+('Rekha Srinivas', 'rekha@gmail.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'CUSTOMER', true);
+
+-- Sample Loan Applications in various states
+-- Draft loans
+INSERT INTO loan_applications (customer_id, branch_id, loan_type, principal_amount, annual_interest_rate, tenure_months, purpose, status) VALUES
+(11, 1, 'Home Loan', 5000000.00, 8.75, 240, 'Purchase 2BHK apartment in Koramangala', 'DRAFT'),
+(12, 2, 'Personal Loan', 300000.00, 12.50, 36, 'Medical expenses', 'DRAFT');
+
+-- Submitted loans
+INSERT INTO loan_applications (customer_id, branch_id, loan_type, principal_amount, annual_interest_rate, tenure_months, purpose, status) VALUES
+(13, 1, 'Auto Loan', 800000.00, 9.50, 60, 'Purchase new car', 'SUBMITTED'),
+(14, 2, 'Education Loan', 1500000.00, 9.25, 84, 'MBA at IIM Bangalore', 'SUBMITTED');
+
+-- Under Review loans
+INSERT INTO loan_applications (customer_id, branch_id, loan_type, principal_amount, annual_interest_rate, tenure_months, purpose, status, current_officer_id) VALUES
+(15, 1, 'Home Loan', 7500000.00, 9.00, 300, 'Purchase villa in Whitefield', 'UNDER_REVIEW', 5),
+(16, 3, 'Personal Loan', 500000.00, 13.00, 48, 'Home renovation', 'UNDER_REVIEW', 9);
+
+-- Forwarded to Manager
+INSERT INTO loan_applications (customer_id, branch_id, loan_type, principal_amount, annual_interest_rate, tenure_months, purpose, status, current_officer_id, current_manager_id) VALUES
+(17, 2, 'Auto Loan', 1200000.00, 10.00, 72, 'Purchase SUV', 'FORWARDED_TO_MANAGER', 7, 3),
+(18, 3, 'Home Loan', 10000000.00, 8.50, 360, 'Purchase luxury apartment', 'FORWARDED_TO_MANAGER', 9, 4);
+
+-- Approved (will be auto-disbursed with EMI in actual flow, but for seed we set directly)
+INSERT INTO loan_applications (customer_id, branch_id, loan_type, principal_amount, annual_interest_rate, tenure_months, purpose, status, current_officer_id, current_manager_id) VALUES
+(19, 1, 'Personal Loan', 200000.00, 11.50, 24, 'Wedding expenses', 'DISBURSED', 5, 2);
+
+-- Rejected loans
+INSERT INTO loan_applications (customer_id, branch_id, loan_type, principal_amount, annual_interest_rate, tenure_months, purpose, status, current_officer_id) VALUES
+(20, 2, 'Personal Loan', 1000000.00, 14.00, 60, 'Business expansion', 'REJECTED', 7),
+(21, 1, 'Home Loan', 20000000.00, 9.50, 360, 'Purchase farmhouse', 'REJECTED', 6);
+
+-- Audit logs for the sample data
+INSERT INTO approval_audit_logs (loan_application_id, actor_id, from_status, to_status, remarks) VALUES
+(3, 13, 'DRAFT', 'SUBMITTED', 'Application submitted by customer'),
+(4, 14, 'DRAFT', 'SUBMITTED', 'Application submitted by customer'),
+(5, 5, 'SUBMITTED', 'UNDER_REVIEW', 'Picked up for review'),
+(6, 9, 'SUBMITTED', 'UNDER_REVIEW', 'Picked up for review'),
+(7, 7, 'SUBMITTED', 'UNDER_REVIEW', 'Picked up for review'),
+(7, 7, 'UNDER_REVIEW', 'FORWARDED_TO_MANAGER', 'Documents verified, forwarding to manager'),
+(8, 9, 'SUBMITTED', 'UNDER_REVIEW', 'Picked up for review'),
+(8, 9, 'UNDER_REVIEW', 'FORWARDED_TO_MANAGER', 'All documents in order'),
+(9, 5, 'SUBMITTED', 'UNDER_REVIEW', 'Picked up for review'),
+(9, 5, 'UNDER_REVIEW', 'FORWARDED_TO_MANAGER', 'Documents verified'),
+(9, 2, 'FORWARDED_TO_MANAGER', 'APPROVED', 'Approved - good credit history'),
+(9, 2, 'APPROVED', 'DISBURSED', 'Auto-disbursed upon approval'),
+(10, 7, 'SUBMITTED', 'UNDER_REVIEW', 'Picked up for review'),
+(10, 7, 'UNDER_REVIEW', 'REJECTED', 'Insufficient income proof'),
+(11, 6, 'SUBMITTED', 'UNDER_REVIEW', 'Picked up for review'),
+(11, 6, 'UNDER_REVIEW', 'REJECTED', 'Loan amount exceeds eligibility');
+
+-- Generate EMI schedule for the disbursed loan (loan_id=9, 200000 @ 11.5% for 24 months)
+-- EMI ≈ 9,364.14
+INSERT INTO emi_schedules (loan_application_id, installment_number, due_date, emi_amount, principal_component, interest_component, outstanding_balance, is_paid) VALUES
+(9, 1, '2025-08-24', 9364.14, 7447.47, 1916.67, 192552.53, true),
+(9, 2, '2025-09-24', 9364.14, 7518.86, 1845.29, 185033.67, true),
+(9, 3, '2025-10-24', 9364.14, 7590.93, 1773.21, 177442.74, true),
+(9, 4, '2025-11-24', 9364.14, 7663.70, 1700.44, 169779.04, false),
+(9, 5, '2025-12-24', 9364.14, 7737.17, 1626.97, 162041.87, false),
+(9, 6, '2026-01-24', 9364.14, 7811.34, 1552.80, 154230.53, false),
+(9, 7, '2026-02-24', 9364.14, 7886.22, 1477.92, 146344.31, false),
+(9, 8, '2026-03-24', 9364.14, 7961.83, 1402.31, 138382.48, false),
+(9, 9, '2026-04-24', 9364.14, 8038.17, 1325.97, 130344.31, false),
+(9, 10, '2026-05-24', 9364.14, 8115.24, 1248.90, 122229.07, false),
+(9, 11, '2026-06-24', 9364.14, 8193.06, 1171.08, 114036.01, false),
+(9, 12, '2026-07-24', 9364.14, 8271.63, 1092.51, 105764.38, false),
+(9, 13, '2026-08-24', 9364.14, 8350.97, 1013.17, 97413.41, false),
+(9, 14, '2026-09-24', 9364.14, 8431.07, 933.07, 88982.34, false),
+(9, 15, '2026-10-24', 9364.14, 8511.96, 852.18, 80470.38, false),
+(9, 16, '2026-11-24', 9364.14, 8593.63, 770.51, 71876.75, false),
+(9, 17, '2026-12-24', 9364.14, 8676.10, 688.04, 63200.65, false),
+(9, 18, '2027-01-24', 9364.14, 8759.37, 604.77, 54441.28, false),
+(9, 19, '2027-02-24', 9364.14, 8843.45, 520.69, 45597.83, false),
+(9, 20, '2027-03-24', 9364.14, 8928.35, 435.79, 36669.48, false),
+(9, 21, '2027-04-24', 9364.14, 9014.07, 350.07, 27655.41, false),
+(9, 22, '2027-05-24', 9364.14, 9100.63, 263.51, 18554.78, false),
+(9, 23, '2027-06-24', 9364.14, 9187.83, 176.31, 9366.95, false),
+(9, 24, '2027-07-24', 9366.95, 9277.37, 89.58, 0.00, false);
